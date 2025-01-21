@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='Rcptchv2Bypss',
-    version=__version__,
+    version='0.0.1',
     author='Thunder (@thd3r)',
     author_email='thd3r@proton.me',
     description='Rcptchv2Bypss',

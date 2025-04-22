@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='Rcptchv2Bypss',
+    name='Recaptchav2Bypass',
     version='0.0.1',
     author='Thunder (@thd3r)',
     author_email='thd3r@proton.me',
@@ -13,16 +13,17 @@ setup(
         'asyncio',
         'selenium',
         'SpeechRecognition',
-        'webdriver-manager'
+        'webdriver-manager',
+        'undetected-chromedriver'
     ],
     entry_points={
         'console_scripts': [
-            'rcptchv2bypss = src.main'
+            'recaptchav2bypass = src.main'
         ]
     },
     license='MIT',
     url='https://github.com/societyprojects/Rcptchv2Bypss',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    keywords=['Rcptchv2Bypss', 'Recaptchav2', 'captchav2']
+    keywords=['Recaptchav2Bypass', 'Recaptcha Bypass', 'Recaptchav2', 'captchav2']
 )

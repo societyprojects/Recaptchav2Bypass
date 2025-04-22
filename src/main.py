@@ -65,7 +65,6 @@ class SeleniumDriver:
         options.add_argument("--disable-gpu")
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--no-sandbox")
-        options.add_argument(f"--user-agent=Mozilla/5.0 (Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0")
 
         if self.headless:
             options.add_argument("--headless=new")

@@ -4,6 +4,7 @@ import os
 import time
 import pydub
 import urllib
+import asyncio
 import speech_recognition
 
 from tempfile import gettempdir
@@ -17,7 +18,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 class SeleniumDriver:
 
@@ -64,7 +65,7 @@ class SeleniumDriver:
         options.add_argument("--disable-gpu")
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--no-sandbox")
-        options.add_argument(f"--user-agent={random_agent}")
+        options.add_argument(f"--user-agent=Mozilla/5.0 (Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0")
 
         if self.headless:
             options.add_argument("--headless=new")
@@ -148,7 +149,7 @@ class Recaptchav2Bypass:
             iframe_inner = driver.find_element(By.XPATH, "//iframe[@title='reCAPTCHA']")
             driver.switch_to.frame(iframe_inner)
         except NoSuchElementException:
-            raise GodorkException("Failed to locate reCAPTCHA iframe element")
+            raise Exception("Failed to locate reCAPTCHA iframe element")
 
         time.sleep(1)
 
@@ -276,7 +277,7 @@ class Recaptchav2Bypass:
     def is_blocked(self, driver):
         blocked = self.get_text_blocked(driver)
         if blocked is not None:
-            print(f"Failed to bypass v2 protection. IP has been blocked! {Bgcolor.BLUE}reason{Bgcolor.DEFAULT}:{blocked.text}")
+            print(f"Failed to bypass v2 protection. IP has been blocked! reason:{blocked.text}")
 
         if driver.current_url == "https://www.google.com/sorry/index":
             print("Unexpected response comes from search engines")
@@ -292,4 +293,4 @@ class Recaptchav2Bypass:
             except KeyboardInterrupt:
                 driver.quit()
             except (Exception, TimeoutError) as err:
-                print(f"Failed to bypass v2 protection. {Bgcolor.BLUE}reason{Bgcolor.DEFAULT}:{err}")
+                print(f"Failed to bypass v2 protection. reason:{err}")
